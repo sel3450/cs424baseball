@@ -64,16 +64,14 @@ func Read() {
 			panic(err)
 		}
 		t.SetHitByPitch(q)
-		fmt.Println(t.GetFirstName())
-		fmt.Println(t.GetLastName())
-		fmt.Println(t.GetPlateAppearance())
-		fmt.Println(t.GetAtBats())
-		fmt.Println(t.GetSingles())
-		fmt.Println(t.GetDoubles())
-		fmt.Println(t.GetTriples())
-		fmt.Println(t.GetHomeruns())
-		fmt.Println(t.GetWalks())
-		fmt.Println(t.GetHitByPitch())
+		//t.ComputeBattingAverage()
+		t.ComputeSlugging()
+		t.ComputeOnBase()
+		t.ComputeOPS()
+		//fmt.Println(t.BattingAverage)
+		//fmt.Println(t.Slugging)
+		//fmt.Println(t.OnbasePercentage)
+		//fmt.Println(t.OPS)
 	}
 }
 

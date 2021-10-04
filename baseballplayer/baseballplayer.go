@@ -1,16 +1,20 @@
 package baseballplayer
 
 type BaseballPlayer struct {
-	FirstName       string
-	LastName        string
-	PlateAppearance int
-	AtBats          int
-	Singles         int
-	Doubles         int
-	Triples         int
-	HomeRuns        int
-	Walks           int
-	HitByPitch      int
+	FirstName        string
+	LastName         string
+	PlateAppearance  int
+	AtBats           int
+	Singles          int
+	Doubles          int
+	Triples          int
+	HomeRuns         int
+	Walks            int
+	HitByPitch       int
+	BattingAverage   float64
+	Slugging         float64
+	OnbasePercentage float64
+	OPS              float64
 }
 
 func (p BaseballPlayer) GetFirstName() string {
@@ -91,4 +95,24 @@ func (p BaseballPlayer) GetHitByPitch() int {
 
 func (p *BaseballPlayer) SetHitByPitch(hbp int) {
 	p.HitByPitch = hbp
+}
+
+func (p *BaseballPlayer) ComputeBattingAverage() {
+	var battingaverage float64 = (float64(p.Singles) + float64(p.Doubles) + float64(p.Triples) + float64(p.HomeRuns)) / float64(p.AtBats)
+	p.BattingAverage = battingaverage
+}
+
+func (p *BaseballPlayer) ComputeSlugging() {
+	var slugging float64 = (float64(p.Singles) + (2 * float64(p.Doubles)) + (3 * float64(p.Triples)) + (4 * float64(p.HomeRuns))) / float64(p.AtBats)
+	p.Slugging = slugging
+}
+
+func (p *BaseballPlayer) ComputeOnBase() {
+	var onbasepercentage float64 = (float64(p.Singles) + float64(p.Doubles) + float64(p.Triples) + float64(p.HomeRuns) + float64(p.Walks) + float64(p.HitByPitch)) / float64(p.PlateAppearance)
+	p.OnbasePercentage = onbasepercentage
+}
+
+func (p *BaseballPlayer) ComputeOPS() {
+	var ops float64 = p.Slugging + p.OnbasePercentage
+	p.OPS = ops
 }
